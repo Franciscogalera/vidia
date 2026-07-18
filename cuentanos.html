@@ -483,8 +483,9 @@
 
     <div class="upload">
       <label for="f-avatar" class="field-label" style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(14,14,14,0.6);display:block;margin-bottom:8px;">Foto de referencia para el avatar <span class="optional" style="text-transform:none;letter-spacing:0;color:rgba(14,14,14,0.4);">(opcional)</span></label>
-      <input type="file" id="f-avatar" accept="image/*">
+      <input type="file" id="f-avatar" accept="image/*" multiple>
       <label for="f-avatar" class="drop"><span class="ico">↑</span><span class="txt">Si quieres un avatar parecido a alguien<span class="fname"></span></span></label>
+      <div class="chosen" id="chosen-avatar"></div>
     </div>
 
     <div class="upload">
@@ -518,7 +519,7 @@
   document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
   // Einzeldatei-Felder: Name + Grün anzeigen (Datei bleibt im Input)
-  ['f-logo', 'f-avatar', 'f-video'].forEach((id) => {
+  ['f-logo', 'f-video'].forEach((id) => {
     const input = document.getElementById(id);
     const drop = input.parentElement.querySelector('.drop');
     const fname = drop.querySelector('.fname');
@@ -529,40 +530,44 @@
     });
   });
 
-  // Fotos: eigene Liste, mehrere Klicks sammeln, einzeln entfernbar
-  const fotosFiles = [];
-  const fFotosInput = document.getElementById('f-fotos');
-  const fotosDrop = fFotosInput.parentElement.querySelector('.drop');
-  const fotosChosen = document.getElementById('chosen-fotos');
-
-  function renderFotos() {
-    fotosChosen.innerHTML = '';
-    fotosFiles.forEach((f, i) => {
-      const row = document.createElement('div');
-      row.className = 'item';
-      const name = document.createElement('span');
-      name.textContent = f.name;
-      const rm = document.createElement('button');
-      rm.type = 'button';
-      rm.setAttribute('aria-label', 'Quitar');
-      rm.textContent = '×';
-      rm.addEventListener('click', () => { fotosFiles.splice(i, 1); renderFotos(); });
-      row.appendChild(name);
-      row.appendChild(rm);
-      fotosChosen.appendChild(row);
+  // Sammel-Felder (mehrere Dateien, Liste mit Entfernen-Button): Fotos + Avatar
+  function setupCollector(inputId, chosenId) {
+    const input = document.getElementById(inputId);
+    const drop = input.parentElement.querySelector('.drop');
+    const chosenEl = document.getElementById(chosenId);
+    const files = [];
+    function render() {
+      chosenEl.innerHTML = '';
+      files.forEach((f, i) => {
+        const row = document.createElement('div');
+        row.className = 'item';
+        const name = document.createElement('span');
+        name.textContent = f.name;
+        const rm = document.createElement('button');
+        rm.type = 'button';
+        rm.setAttribute('aria-label', 'Quitar');
+        rm.textContent = '×';
+        rm.addEventListener('click', () => { files.splice(i, 1); render(); });
+        row.appendChild(name);
+        row.appendChild(rm);
+        chosenEl.appendChild(row);
+      });
+      drop.classList.toggle('has-file', files.length > 0);
+      drop.querySelector('.fname').textContent =
+        files.length ? files.length + (files.length === 1 ? ' foto seleccionada' : ' fotos seleccionadas') : '';
+    }
+    input.addEventListener('change', () => {
+      Array.from(input.files).forEach((f) => {
+        if (!files.some((x) => x.name === f.name && x.size === f.size)) files.push(f);
+      });
+      input.value = ''; // Reset: Dialog öffnet normal, gleiche Datei erneut wählbar
+      render();
     });
-    fotosDrop.classList.toggle('has-file', fotosFiles.length > 0);
-    fotosDrop.querySelector('.fname').textContent =
-      fotosFiles.length ? fotosFiles.length + (fotosFiles.length === 1 ? ' foto seleccionada' : ' fotos seleccionadas') : '';
+    return files;
   }
 
-  fFotosInput.addEventListener('change', () => {
-    Array.from(fFotosInput.files).forEach((f) => {
-      if (!fotosFiles.some((x) => x.name === f.name && x.size === f.size)) fotosFiles.push(f);
-    });
-    fFotosInput.value = ''; // Reset: Dialog öffnet normal, gleiche Datei erneut wählbar
-    renderFotos();
-  });
+  const fotosFiles = setupCollector('f-fotos', 'chosen-fotos');
+  const avatarFiles = setupCollector('f-avatar', 'chosen-avatar');
 
   // Formular: erst Dateien in Vercel Blob laden, dann Text + Links per Mail senden
   const form = document.getElementById('brief-form');
@@ -590,7 +595,6 @@
     }
 
     const fLogo = document.getElementById('f-logo');
-    const fAvatar = document.getElementById('f-avatar');
     const fVideo = document.getElementById('f-video');
 
     // Pflicht-Uploads prüfen
@@ -625,8 +629,12 @@
       }
       document.getElementById('url-fotos').value = fotoUrls.join('\n');
 
-      if (fAvatar.files.length) {
-        document.getElementById('url-avatar').value = await put(fAvatar.files[0], 'avatar');
+      if (avatarFiles.length) {
+        const avatarUrls = [];
+        for (let i = 0; i < avatarFiles.length; i++) {
+          avatarUrls.push(await put(avatarFiles[i], 'avatar-' + (i + 1)));
+        }
+        document.getElementById('url-avatar').value = avatarUrls.join('\n');
       }
       let hasVideo = false;
       if (fVideo.files.length) {
