@@ -499,9 +499,10 @@
 
     <div class="upload">
       <label for="f-video" class="field-label" style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(14,14,14,0.6);display:block;margin-bottom:8px;">Vídeo del negocio <span class="optional" style="text-transform:none;letter-spacing:0;color:rgba(14,14,14,0.4);">(opcional)</span></label>
-      <input type="file" id="f-video" accept="video/*">
-      <label for="f-video" class="drop"><span class="ico">↑</span><span class="txt">Un vídeo del local o producto para el fondo<span class="fname"></span></span></label>
-      <span class="up-hint">Arrastra aquí o haz clic.</span>
+      <input type="file" id="f-video" accept="video/*" multiple>
+      <label for="f-video" class="drop"><span class="ico">↑</span><span class="txt">Uno o varios vídeos del local o producto<span class="fname"></span></span></label>
+      <span class="up-hint">Arrastra aquí o selecciona varios a la vez.</span>
+      <div class="chosen" id="chosen-video"></div>
     </div>
 
     <div id="form-status" class="form-status"></div>
@@ -529,7 +530,7 @@
   document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
   // Einzeldatei-Felder: Name + Grün anzeigen (Datei bleibt im Input)
-  ['f-logo', 'f-video'].forEach((id) => {
+  ['f-logo'].forEach((id) => {
     const input = document.getElementById(id);
     const drop = input.parentElement.querySelector('.drop');
     const fname = drop.querySelector('.fname');
@@ -552,8 +553,8 @@
     });
   });
 
-  // Sammel-Felder (mehrere Dateien, Liste mit Entfernen-Button): Fotos + Avatar
-  function setupCollector(inputId, chosenId) {
+  // Sammel-Felder (mehrere Dateien, Liste mit Entfernen-Button): Fotos, Avatar, Video
+  function setupCollector(inputId, chosenId, acceptPrefix, nounSingular, nounPlural) {
     const input = document.getElementById(inputId);
     const drop = input.parentElement.querySelector('.drop');
     const chosenEl = document.getElementById(chosenId);
@@ -576,11 +577,11 @@
       });
       drop.classList.toggle('has-file', files.length > 0);
       drop.querySelector('.fname').textContent =
-        files.length ? files.length + (files.length === 1 ? ' foto seleccionada' : ' fotos seleccionadas') : '';
+        files.length ? files.length + ' ' + (files.length === 1 ? nounSingular : nounPlural) : '';
     }
     function addFiles(list) {
       Array.from(list).forEach((f) => {
-        if (f.type.startsWith('image/') && !files.some((x) => x.name === f.name && x.size === f.size)) files.push(f);
+        if (f.type.startsWith(acceptPrefix) && !files.some((x) => x.name === f.name && x.size === f.size)) files.push(f);
       });
       render();
     }
@@ -599,8 +600,9 @@
     return files;
   }
 
-  const fotosFiles = setupCollector('f-fotos', 'chosen-fotos');
-  const avatarFiles = setupCollector('f-avatar', 'chosen-avatar');
+  const fotosFiles = setupCollector('f-fotos', 'chosen-fotos', 'image/', 'foto seleccionada', 'fotos seleccionadas');
+  const avatarFiles = setupCollector('f-avatar', 'chosen-avatar', 'image/', 'foto seleccionada', 'fotos seleccionadas');
+  const videoFiles = setupCollector('f-video', 'chosen-video', 'video/', 'vídeo seleccionado', 'vídeos seleccionados');
 
   // Formular: erst Dateien in Vercel Blob laden, dann Text + Links per Mail senden
   const form = document.getElementById('brief-form');
@@ -628,7 +630,6 @@
     }
 
     const fLogo = document.getElementById('f-logo');
-    const fVideo = document.getElementById('f-video');
 
     // Pflicht-Uploads prüfen
     if (!fLogo.files.length) { setStatus('Sube tu logo para continuar.', 'error'); return; }
@@ -670,8 +671,12 @@
         document.getElementById('url-avatar').value = avatarUrls.join('\n');
       }
       let hasVideo = false;
-      if (fVideo.files.length) {
-        document.getElementById('url-video').value = await put(fVideo.files[0], 'video');
+      if (videoFiles.length) {
+        const videoUrls = [];
+        for (let i = 0; i < videoFiles.length; i++) {
+          videoUrls.push(await put(videoFiles[i], 'video-' + (i + 1)));
+        }
+        document.getElementById('url-video').value = videoUrls.join('\n');
         hasVideo = true;
       }
 
