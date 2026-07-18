@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VIDIA · Packs</title>
+<meta name="description" content="Elige tu pack de vídeos de alto rendimiento con IA. Desde el Pack Validación hasta el Pack Escala. Sin reuniones, entrega en 48–72 h.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,600;10..48,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFF4E6;
+    --ink: #0E0E0E;
+    --hot: #FF4D2E;
+    --lime: #C6FF3D;
+    --violet: #5A3FFF;
+    --pink: #FFC2D1;
+    --paper: #FFEED1;
+    --grid-line: rgba(14,14,14,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.4;
+  }
+
+  /* Grano sutil */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  .serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: difference;
+    color: white;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 32px;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    text-decoration: none;
+    color: white;
+  }
+  .logo span { color: var(--hot); mix-blend-mode: normal; }
+  nav .cta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 10px 18px;
+    border: 1.5px solid white;
+    border-radius: 100px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.2s ease;
+  }
+  nav .cta:hover { background: white; color: black; }
+  nav .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  nav .nav-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: white;
+    transition: opacity 0.2s ease;
+  }
+  nav .nav-link:hover { opacity: 0.6; }
+  nav .nav-link.active { text-decoration: underline; text-underline-offset: 5px; }
+
+  /* ---------- HEADER ---------- */
+  .page-head {
+    padding: 160px 32px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+  }
+  .head-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-bottom: 28px;
+  }
+  .page-title {
+    font-size: clamp(44px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    max-width: 14ch;
+  }
+  .page-title em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--violet);
+    font-weight: 400;
+  }
+  .page-sub {
+    margin-top: 24px;
+    max-width: 52ch;
+    font-size: 18px;
+    color: rgba(14,14,14,0.75);
+  }
+
+  /* ---------- PRICING ---------- */
+  .pricing {
+    padding: 40px 32px 120px;
+    position: relative;
+  }
+  .pricing-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+  .plan {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 24px;
+    padding: 36px 30px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.25s cubic-bezier(.2,.8,.2,1);
+  }
+  .plan:hover { transform: translateY(-8px); }
+
+  /* Plan destacado (bestseller) */
+  .plan.featured {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .plan.featured .plan-price,
+  .plan.featured .plan-name { color: var(--bg); }
+  .plan.featured .feat-list li { border-color: rgba(255,244,230,0.15); }
+  .plan.featured .feat-list li::before { color: var(--lime); }
+  .plan.featured .plan-content .plan-content-num { color: var(--lime); }
+
+  .badge {
+    position: absolute;
+    top: -14px;
+    right: 24px;
+    background: var(--lime);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    padding: 7px 14px;
+    border: 2px solid var(--ink);
+    border-radius: 100px;
+  }
+  .plan-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
+    margin-bottom: 14px;
+  }
+  .plan-name {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 6px;
+  }
+  .plan-name em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--hot);
+    font-weight: 400;
+  }
+  .plan.featured .plan-name em { color: var(--hot); }
+  .plan-price {
+    font-size: 46px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 18px 0 4px;
+  }
+  .plan-cycle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.6;
+    margin-bottom: 24px;
+  }
+  .plan-content {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(14,14,14,0.05);
+    margin-bottom: 24px;
+  }
+  .plan.featured .plan-content { background: rgba(255,244,230,0.08); }
+  .plan-content .plan-content-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: var(--violet);
+  }
+
+  .feat-list {
+    list-style: none;
+    margin: 0 0 28px;
+    flex-grow: 1;
+  }
+  .feat-list li {
+    position: relative;
+    padding: 12px 0 12px 30px;
+    font-size: 15px;
+    border-top: 1px solid rgba(14,14,14,0.1);
+  }
+  .feat-list li:first-child { border-top: none; }
+  .feat-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    color: var(--hot);
+    font-weight: 700;
+  }
+  .feat-list li strong { font-weight: 600; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 18px 28px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    border: 2px solid var(--ink);
+    transition: all 0.25s cubic-bezier(.2,.8,.2,1);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--hot);
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(.2,.8,.2,1);
+    z-index: 0;
+  }
+  .btn-primary:hover::before { transform: translateY(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+  .plan.featured .btn-primary {
+    background: var(--lime);
+    color: var(--ink);
+    border-color: var(--lime);
+  }
+  .plan.featured .btn-primary::before { background: var(--hot); }
+  .plan.featured .btn-primary:hover span { color: var(--bg); }
+
+  /* Nota al pie de precios */
+  .pricing-note {
+    max-width: 1400px;
+    margin: 48px auto 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    color: rgba(14,14,14,0.6);
+    text-align: center;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 48px 32px 32px;
+    text-align: center;
+  }
+  footer .footer-logo {
+    font-size: 96px;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+  footer .footer-logo span { color: var(--hot); font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+  footer .small {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,244,230,0.5);
+    letter-spacing: 0.05em;
+  }
+  footer .legal-links {
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+  footer .legal-links a {
+    color: rgba(255,244,230,0.7);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.2s ease;
+  }
+  footer .legal-links a:hover { color: var(--hot); }
+  footer .legal-links .sep { color: rgba(255,244,230,0.3); }
+
+  /* ---------- REVEAL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.2,.8,.2,1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .pricing-grid { grid-template-columns: 1fr; gap: 32px; }
+    .plan.featured { order: -1; }
+    .page-head { padding: 130px 20px 32px; }
+    .pricing { padding: 32px 20px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">VIDIA<span>.</span></a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link">Inicio</a>
+    <a href="packs.html" class="nav-link active" aria-current="page">Packs</a>
+    <a href="cuentanos.html" class="nav-link">Cuéntanos</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<section class="page-head">
+  <div class="page-grid"></div>
+  <div class="head-inner">
+    <div class="eyebrow">// PACKS</div>
+    <h1 class="page-title">Elige tu ritmo de <em>producción</em>.</h1>
+    <p class="page-sub">
+      Tres packs, un mismo sistema 100% remoto. Sin cámaras, sin actores, sin reuniones.
+      Solo dinos qué necesitas y empezamos.
+    </p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="pricing-grid">
+
+    <!-- PACK 1 -->
+    <div class="plan reveal">
+      <div class="plan-num">// 01</div>
+      <div class="plan-name">El Pack <em>Validación</em></div>
+      <div class="plan-price">149 €</div>
+      <div class="plan-cycle">Pago único o mensual</div>
+      <div class="plan-content">
+        <span class="plan-content-num">1</span> vídeo de alto rendimiento (formato 9:16 para Reels, TikTok o Ads).
+      </div>
+      <ul class="feat-list">
+        <li>Briefing <strong>100 % asíncrono</strong> (sin reuniones, sin pérdida de tiempo).</li>
+        <li>Avatar de IA y voz de IA realista (español, alemán o inglés).</li>
+        <li>Guion profesional y subtítulos dinámicos incluidos.</li>
+        <li><strong>Primera entrega</strong> en 72 h (una vez aprobado el guion).</li>
+        <li>Revisiones: <strong>1 ronda</strong> de cambios incluida.</li>
+      </ul>
+      <a href="index.html#contacto" class="btn-primary"><span>Empezar con Validación →</span></a>
+    </div>
+
+    <!-- PACK 2 · DESTACADO -->
+    <div class="plan featured reveal">
+      <div class="badge">El más vendido</div>
+      <div class="plan-num">// 02</div>
+      <div class="plan-name">El Pack <em>Impulso</em></div>
+      <div class="plan-price">449 €</div>
+      <div class="plan-cycle">Al mes</div>
+      <div class="plan-content">
+        <span class="plan-content-num">3</span> vídeos de alto rendimiento al mes (formato 9:16).
+      </div>
+      <ul class="feat-list">
+        <li>Todo lo incluido en el <strong>Pack Validación</strong>.</li>
+        <li>Bonus de formato: 1 vídeo también en 1:1 o 16:9 (Facebook o YouTube Ads).</li>
+        <li>Producción prioritaria: <strong>primera entrega</strong> en 48 h.</li>
+        <li>Avatar de IA propio y fijo, reservado en exclusiva para la marca.</li>
+        <li>2 variantes de hook (A/B testing de los primeros 3 segundos).</li>
+        <li>Revisiones: cambios de texto menores <strong>ilimitados</strong>.</li>
+      </ul>
+      <a href="index.html#contacto" class="btn-primary"><span>Empezar con Impulso →</span></a>
+    </div>
+
+    <!-- PACK 3 -->
+    <div class="plan reveal">
+      <div class="plan-num">// 03</div>
+      <div class="plan-name">El Pack <em>Escala</em></div>
+      <div class="plan-price">999 €</div>
+      <div class="plan-cycle">Al mes</div>
+      <div class="plan-content">
+        <span class="plan-content-num">7</span> vídeos de alto rendimiento al mes.
+      </div>
+      <ul class="feat-list">
+        <li>Todo lo incluido en el <strong>Pack Impulso</strong>.</li>
+        <li>Flexibilidad total: cada vídeo en 9:16, 1:1 y 16:9 si se desea.</li>
+        <li>3 variantes de hook diferentes por vídeo (para media buyers y escalado).</li>
+        <li>Opción multiidioma (español e inglés para el mercado de EE.UU.).</li>
+        <li>Feedback mensual de rendimiento asíncrono mediante vídeo-review.</li>
+        <li>Revisiones: <strong>soporte VIP</strong> con primera entrega exprés en 48 h y revisiones ilimitadas.</li>
+      </ul>
+      <a href="index.html#contacto" class="btn-primary"><span>Empezar con Escala →</span></a>
+    </div>
+
+  </div>
+
+  <p class="pricing-note">
+    [ Los plazos indican la primera entrega tras aprobar el guion · Las revisiones se realizan después · Precios sin IVA ]
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">VIDIA<span>.</span></div>
+  <div class="small">© 2026 · Hecho con cariño</div>
+  <div class="legal-links">
+    <a href="aviso-legal.html">Aviso Legal</a>
+    <span class="sep">·</span>
+    <a href="privacidad.html">Privacidad</a>
+  </div>
+</footer>
+
+<script>
+  // Reveal al hacer scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+</script>
+
+</body>
+</html>

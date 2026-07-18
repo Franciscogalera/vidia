@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VIDIA · Videos de alto rendimiento. Sin cámaras, sin límites.</title>
+<meta name="description" content="Escalamos PYMEs en España y en el mercado hispano de EE.UU. con contenido nativo en video, generado con IA. Procesos 100% remotos. Sin reuniones presenciales. Primera entrega en 72 h.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,600;10..48,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFF4E6;
+    --ink: #0E0E0E;
+    --hot: #FF4D2E;
+    --lime: #C6FF3D;
+    --violet: #5A3FFF;
+    --pink: #FFC2D1;
+    --paper: #FFEED1;
+    --grid-line: rgba(14,14,14,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.4;
+  }
+
+  /* Subtle grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  .serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: difference;
+    color: white;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 32px;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .logo span { color: var(--hot); mix-blend-mode: normal; }
+  nav .cta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 10px 18px;
+    border: 1.5px solid white;
+    border-radius: 100px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.2s ease;
+  }
+  nav .cta:hover { background: white; color: black; }
+  nav .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  nav .nav-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: white;
+    transition: opacity 0.2s ease;
+  }
+  nav .nav-link:hover { opacity: 0.6; }
+  nav .nav-link.active { text-decoration: underline; text-underline-offset: 5px; }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 32px 60px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    background: var(--lime);
+    padding: 8px 16px;
+    border-radius: 100px;
+    border: 1.5px solid var(--ink);
+    margin-bottom: 32px;
+    animation: float-in 0.8s ease-out;
+  }
+  .hero-eyebrow .dot {
+    width: 8px; height: 8px;
+    background: var(--ink);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  h1.hero-title {
+    font-size: clamp(48px, 10vw, 168px);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+    margin-bottom: 32px;
+    animation: float-in 1s ease-out 0.1s both;
+  }
+  h1.hero-title .accent {
+    color: var(--hot);
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  h1.hero-title .underline {
+    position: relative;
+    display: inline-block;
+  }
+  h1.hero-title .underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0.08em;
+    left: -2%;
+    right: -2%;
+    height: 0.18em;
+    background: var(--violet);
+    z-index: -1;
+    border-radius: 4px;
+  }
+
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    align-items: end;
+    margin-top: 40px;
+    animation: float-in 1s ease-out 0.3s both;
+  }
+
+  .hero-sub {
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.5;
+    max-width: 560px;
+    color: rgba(14,14,14,0.78);
+  }
+  .hero-sub strong { color: var(--ink); font-weight: 600; }
+
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-end;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 22px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 17px;
+    border: 2px solid var(--ink);
+    transition: all 0.25s cubic-bezier(.2,.8,.2,1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--hot);
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(.2,.8,.2,1);
+    z-index: 0;
+  }
+  .btn-primary:hover::before { transform: translateY(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+  .btn-primary .arrow {
+    position: relative; z-index: 1;
+    width: 28px; height: 28px;
+    background: var(--bg);
+    border-radius: 50%;
+    color: var(--ink);
+    display: grid; place-items: center;
+    transition: transform 0.25s ease;
+  }
+  .btn-primary:hover .arrow { transform: rotate(-45deg); }
+
+  .hero-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: rgba(14,14,14,0.6);
+    text-align: right;
+  }
+
+  /* Sticker decorations */
+  .sticker {
+    position: absolute;
+    z-index: 1;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    pointer-events: none;
+  }
+  .sticker.s1 {
+    top: 28%; right: 4%;
+    background: var(--violet);
+    color: white;
+    padding: 20px 36px;
+    border-radius: 100px;
+    transform: rotate(8deg);
+    font-size: 38px;
+    line-height: 1;
+    box-shadow: 6px 6px 0 var(--ink);
+    border: 2px solid var(--ink);
+  }
+  .sticker.s2 {
+    bottom: 22%; left: 4%;
+    background: var(--pink);
+    color: var(--ink);
+    padding: 12px 20px;
+    border-radius: 8px;
+    transform: rotate(-6deg);
+    font-size: 18px;
+    border: 1.5px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 22px 0;
+    overflow: hidden;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: scroll-x 30s linear infinite;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .marquee-track .star {
+    color: var(--hot);
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+  }
+
+  /* ---------- DEMOS SECTION ---------- */
+  .demos {
+    padding: 120px 32px;
+    position: relative;
+  }
+  .section-header {
+    max-width: 1400px;
+    margin: 0 auto 80px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 60px;
+    align-items: end;
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 6px 14px;
+    border-radius: 4px;
+    align-self: start;
+  }
+  .section-title {
+    font-size: clamp(40px, 6vw, 88px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+  }
+  .section-title em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--violet);
+    font-weight: 400;
+  }
+
+  .demo-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .demo-card {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(.2,.8,.2,1);
+    position: relative;
+  }
+  .demo-card:nth-child(2) { transform: translateY(40px); }
+  .demo-card:hover { transform: translateY(-8px) !important; }
+  .demo-card:nth-child(2):hover { transform: translateY(32px) !important; }
+
+  .demo-thumb {
+    aspect-ratio: 9 / 16;
+    background: linear-gradient(135deg, #2a2a2a 0%, #0e0e0e 100%);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .demo-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(255,77,46,0.3), transparent 50%);
+    pointer-events: none;
+  }
+  .demo-thumb.has-video::after { display: none; }
+  .demo-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+  .demo-thumb.has-video .play-btn { display: none; }
+
+  .sound-btn {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--lime);
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    z-index: 4;
+    transition: transform 0.15s ease;
+    padding: 0;
+  }
+  .sound-btn:hover { transform: translateY(-2px); }
+  .sound-btn svg { width: 20px; height: 20px; stroke: var(--ink); }
+  .sound-btn .icon-on { display: none; }
+  .sound-btn.is-on .icon-off { display: none; }
+  .sound-btn.is-on .icon-on { display: block; }
+  .sound-hint {
+    position: absolute;
+    bottom: 22px;
+    left: 70px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 6px 12px;
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .demo-thumb.has-video:hover .sound-hint { opacity: 1; transform: translateX(0); }
+  .demo-thumb.has-video.has-sound .sound-hint { display: none; }
+  .play-btn {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px; height: 72px;
+    background: var(--lime);
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    z-index: 2;
+    transition: transform 0.2s ease;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .demo-thumb:hover .play-btn { transform: translate(-50%, -50%) scale(1.08); }
+  .play-btn::before {
+    content: '';
+    width: 0; height: 0;
+    border-left: 18px solid var(--ink);
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    margin-left: 4px;
+  }
+
+  .demo-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--bg);
+    color: var(--ink);
+    padding: 6px 12px;
+    border-radius: 100px;
+    border: 1.5px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    z-index: 3;
+  }
+  .demo-duration {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    background: rgba(14,14,14,0.85);
+    color: var(--bg);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    z-index: 3;
+  }
+
+  .demo-info {
+    padding: 24px;
+    border-top: 1.5px solid var(--ink);
+  }
+  .demo-info h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .demo-info p {
+    font-size: 14px;
+    color: rgba(14,14,14,0.7);
+    line-height: 1.5;
+  }
+
+  /* ---------- BENEFITS ---------- */
+  .benefits {
+    padding: 120px 32px;
+    position: relative;
+  }
+  .benefits-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .benefit-card {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 24px;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .benefit-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .benefit-card:nth-child(1) { background: var(--lime); }
+  .benefit-card:nth-child(2) { background: var(--pink); }
+  .benefit-card:nth-child(3) { background: var(--paper); }
+  .benefit-card:nth-child(4) { background: var(--bg); }
+  .benefit-stat {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: clamp(56px, 7vw, 88px);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+  }
+  .benefit-stat .unit {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.55em;
+    color: var(--hot);
+    margin-left: 4px;
+  }
+  .benefit-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .benefit-card p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(14,14,14,0.78);
+  }
+  .benefit-tag {
+    align-self: flex-start;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border: 1.5px solid var(--ink);
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-top: auto;
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 120px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .process .section-num { background: var(--bg); color: var(--ink); }
+  .process .section-title em { color: var(--lime); }
+  .process .section-title { color: var(--bg); }
+
+  .steps {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 48px;
+    align-items: center;
+    padding: 40px 0;
+    border-top: 1.5px solid rgba(255,244,230,0.2);
+    transition: padding 0.3s ease;
+    position: relative;
+  }
+  .step:hover { padding-left: 24px; }
+  .step:hover .step-icon { transform: rotate(-12deg) scale(1.05); }
+  .step:last-child { border-bottom: 1.5px solid rgba(255,244,230,0.2); }
+
+  .step-num {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 96px;
+    color: var(--hot);
+    line-height: 1;
+  }
+
+  .step-content h3 {
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    line-height: 1.05;
+  }
+  .step-content p {
+    font-size: 17px;
+    color: rgba(255,244,230,0.7);
+    max-width: 520px;
+    line-height: 1.55;
+  }
+
+  .step-icon {
+    width: 100px; height: 100px;
+    border-radius: 24px;
+    display: grid; place-items: center;
+    transition: transform 0.3s cubic-bezier(.2,.8,.2,1);
+    border: 1.5px solid var(--bg);
+  }
+  .step:nth-child(1) .step-icon { background: var(--lime); color: var(--ink); }
+  .step:nth-child(2) .step-icon { background: var(--hot); color: var(--bg); }
+  .step:nth-child(3) .step-icon { background: var(--violet); color: var(--bg); }
+
+  .step-icon svg { width: 48px; height: 48px; }
+
+  /* ---------- CONTACT ---------- */
+  .contact {
+    padding: 120px 32px;
+    position: relative;
+  }
+
+  .contact-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  .contact h2 {
+    font-size: clamp(56px, 9vw, 144px);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    font-weight: 800;
+    margin-bottom: 32px;
+  }
+  .contact h2 em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--hot);
+    font-weight: 400;
+  }
+  .contact p {
+    font-size: clamp(18px, 1.6vw, 22px);
+    max-width: 600px;
+    margin: 0 auto 56px;
+    color: rgba(14,14,14,0.75);
+    line-height: 1.5;
+  }
+
+  form {
+    max-width: 720px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    text-align: left;
+  }
+  .field { position: relative; }
+  .field.full { grid-column: 1 / -1; }
+  .field label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    color: rgba(14,14,14,0.6);
+  }
+  .field label .optional {
+    text-transform: none;
+    letter-spacing: 0;
+    color: rgba(14,14,14,0.4);
+    margin-left: 4px;
+  }
+  .field .field-hint {
+    display: block;
+    margin-top: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(14,14,14,0.55);
+    letter-spacing: 0.02em;
+  }
+  .field input, .field textarea, .field select {
+    width: 100%;
+    padding: 18px 20px;
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 12px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 16px;
+    color: var(--ink);
+    transition: all 0.2s ease;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus {
+    outline: none;
+    background: var(--lime);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .field textarea { min-height: 120px; resize: vertical; font-family: inherit; }
+
+  button.submit {
+    grid-column: 1 / -1;
+    background: var(--hot);
+    color: var(--bg);
+    border: 2px solid var(--ink);
+    padding: 22px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    box-shadow: 6px 6px 0 var(--ink);
+    margin-top: 16px;
+  }
+  button.submit:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 var(--ink);
+    background: var(--violet);
+  }
+  button.submit:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--ink);
+  }
+  button.submit[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: 6px 6px 0 var(--ink) !important;
+  }
+  .form-status {
+    grid-column: 1 / -1;
+    margin-top: 8px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-align: center;
+    display: none;
+  }
+  .form-status.show { display: block; }
+  .form-status.ok {
+    background: var(--lime);
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+  }
+  .form-status.error {
+    background: var(--hot);
+    border: 1.5px solid var(--ink);
+    color: var(--bg);
+  }
+  .form-status .ok-title {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .form-status .ok-bonus {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1.5px solid var(--ink);
+    font-size: 12px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .form-status .ok-cta {
+    display: inline-block;
+    margin-top: 10px;
+    background: var(--ink);
+    color: var(--lime);
+    padding: 11px 22px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    border: 1.5px solid var(--ink);
+  }
+  .form-status .ok-cta:hover {
+    background: var(--violet);
+    color: var(--bg);
+    transform: translateY(-2px);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+
+  /* ---------- SUCCESS PANEL (replaces form after submit) ---------- */
+  .success-panel {
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 28px;
+    padding: 56px 40px 52px;
+    text-align: center;
+    box-shadow: 8px 8px 0 var(--ink);
+    max-width: 640px;
+    margin: 0 auto;
+    animation: panelIn 0.5s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .success-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    background: var(--lime);
+    color: var(--ink);
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1.5px solid var(--ink);
+    display: inline-block;
+    margin-bottom: 32px;
+  }
+  .success-panel .success-cta {
+    display: inline-block;
+    background: var(--hot);
+    color: var(--bg);
+    padding: 22px 40px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    border: 2px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    transition: all 0.2s ease;
+    margin-top: 8px;
+  }
+  .success-panel .success-cta:hover {
+    background: var(--violet);
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 var(--ink);
+  }
+  .success-panel .success-cta:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--ink);
+  }
+  .success-panel .success-helper {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    color: rgba(14,14,14,0.55);
+    margin: 52px auto 0;
+    max-width: 380px;
+    line-height: 1.55;
+  }
+  .success-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 48px 0 32px;
+  }
+  .success-divider::before,
+  .success-divider::after {
+    content: '';
+    flex: 1;
+    height: 1.5px;
+    background: rgba(14,14,14,0.18);
+  }
+  .success-divider span {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: rgba(14,14,14,0.6);
+    white-space: nowrap;
+  }
+  .success-panel h3 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .success-panel .success-sub {
+    font-size: 17px;
+    color: var(--ink);
+    line-height: 1.5;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+  .success-panel .success-sub strong {
+    background: var(--hot);
+    color: var(--bg);
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  @media (max-width: 540px) {
+    .success-divider span { font-size: 15px; white-space: normal; text-align: center; }
+    .success-panel { padding: 40px 24px 36px; }
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 48px 32px 32px;
+    text-align: center;
+  }
+  footer .footer-logo {
+    font-size: 96px;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+  footer .footer-logo span { color: var(--hot); font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+  footer .small {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,244,230,0.5);
+    letter-spacing: 0.05em;
+  }
+  footer .legal-links {
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+  footer .legal-links a {
+    color: rgba(255,244,230,0.7);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.2s ease;
+  }
+  footer .legal-links a:hover { color: var(--hot); }
+  footer .legal-links .sep { color: rgba(255,244,230,0.3); }
+
+  /* ---------- ANIMATIONS ---------- */
+  @keyframes float-in {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.6; }
+  }
+  @keyframes scroll-x {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Scroll-triggered reveals */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.2,.8,.2,1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .hero-bottom { grid-template-columns: 1fr; gap: 32px; align-items: start; }
+    .hero-actions { align-items: flex-start; }
+    .hero-meta { text-align: left; }
+    .section-header { grid-template-columns: 1fr; gap: 24px; }
+    .demo-grid { grid-template-columns: 1fr; }
+    .benefits-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+    .demo-card:nth-child(2) { transform: none; }
+    .demo-card:nth-child(2):hover { transform: translateY(-8px) !important; }
+    .step { grid-template-columns: 80px 1fr; gap: 24px; }
+    .step-icon { display: none; }
+    .step-num { font-size: 64px; }
+    form { grid-template-columns: 1fr; }
+    .sticker { display: none; }
+    nav { padding: 16px 20px; }
+    .hero { padding: 100px 20px 40px; }
+    .demos, .benefits, .process, .contact { padding: 80px 20px; }
+    .benefit-card { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">VIDIA<span>.</span></div>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link active" aria-current="page">Inicio</a>
+    <a href="packs.html" class="nav-link">Packs</a>
+    <a href="cuentanos.html" class="nav-link">Cuéntanos</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+
+  <div class="sticker s1">¡cero cámaras!</div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      <span>VIDEOS PUBLICITARIOS CON IA</span>
+    </div>
+
+    <h1 class="hero-title">
+      Videos de <span class="accent">alto rendimiento</span>.<br>
+      <span class="underline">Sin cámaras, sin límites</span>.
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="hero-sub">
+        Escalamos <strong>PYMEs en España y en el mercado hispano de EE.UU.</strong> Combinamos
+        contenido nativo con procesos <strong>100% remotos</strong>. Sin reuniones presenciales, sin demoras,
+        solo conversiones.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contacto" class="btn-primary">
+          <span>Comenzar ahora</span>
+          <span class="arrow">→</span>
+        </a>
+        <div class="hero-meta">
+          [ MERCADOS: ES · DE · EN ]
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>VIDEOS QUE VENDEN</span><span class="star">✦</span>
+    <span>SIN CÁMARAS</span><span class="star">✦</span>
+    <span>SIN ACTORES</span><span class="star">✦</span>
+    <span>EN 72 HORAS</span><span class="star">✦</span>
+    <span>VIDEOS QUE VENDEN</span><span class="star">✦</span>
+    <span>SIN CÁMARAS</span><span class="star">✦</span>
+    <span>SIN ACTORES</span><span class="star">✦</span>
+    <span>EN 72 HORAS</span><span class="star">✦</span>
+    <span>VIDEOS QUE VENDEN</span><span class="star">✦</span>
+    <span>SIN CÁMARAS</span><span class="star">✦</span>
+    <span>SIN ACTORES</span><span class="star">✦</span>
+    <span>EN 72 HORAS</span><span class="star">✦</span>
+  </div>
+</div>
+
+<!-- DEMOS -->
+<section class="demos">
+  <div class="section-header reveal">
+    <div class="section-num">// 01 — DEMOS</div>
+    <h2 class="section-title">Mira lo que <em>hacemos</em> para PYMEs reales.</h2>
+  </div>
+
+  <div class="demo-grid">
+
+    <div class="demo-card reveal">
+      <div class="demo-thumb has-video">
+        <video class="demo-video" src="gracias%20h_4.web.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <div class="demo-tag">Seguridad</div>
+        <div class="demo-duration">0:30</div>
+        <button type="button" class="sound-btn" aria-label="Activar sonido">
+          <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+          <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        </button>
+        <div class="sound-hint">Click para oír</div>
+      </div>
+      <div class="demo-info">
+        <h3>LC Seguridad Electrónica</h3>
+        <p><strong>Estrategia de Seguridad.</strong> Imán de clientes potenciales optimizado para captación de clientes de alto valor.</p>
+      </div>
+    </div>
+
+    <div class="demo-card reveal">
+      <div class="demo-thumb has-video">
+        <video class="demo-video" src="gracias%20h_7.web.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <div class="demo-tag">Retail</div>
+        <div class="demo-duration">0:37</div>
+        <button type="button" class="sound-btn" aria-label="Activar sonido">
+          <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+          <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        </button>
+        <div class="sound-hint">Click para oír</div>
+      </div>
+      <div class="demo-info">
+        <h3>Carnes Galván</h3>
+        <p><strong>E-Commerce Retail.</strong> Dinamización de ofertas flash con estética premium para redes sociales.</p>
+      </div>
+    </div>
+
+    <div class="demo-card reveal">
+      <div class="demo-thumb has-video">
+        <video class="demo-video" src="gracias%20h_1_2.web.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <div class="demo-tag">Servicios</div>
+        <div class="demo-duration">0:30</div>
+        <button type="button" class="sound-btn" aria-label="Activar sonido">
+          <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+          <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        </button>
+        <div class="sound-hint">Click para oír</div>
+      </div>
+      <div class="demo-info">
+        <h3>Mudanzas Mendocinas</h3>
+        <p><strong>Servicios Profesionales.</strong> Generación de confianza instantánea mediante contenido de autoridad.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits">
+  <div class="section-header reveal">
+    <div class="section-num">// 02 — POR QUÉ VIDEO</div>
+    <h2 class="section-title">Eficiencia visual para marcas que <em>escalan</em>.</h2>
+  </div>
+
+  <div class="benefits-grid">
+
+    <div class="benefit-card reveal">
+      <div class="benefit-stat">ES<span class="unit">·US</span></div>
+      <h3>Autoridad de mercado</h3>
+      <p>No es solo video; es contenido nativo que entiende la psicología de venta desde Madrid hasta Miami.</p>
+      <span class="benefit-tag">Alcance</span>
+    </div>
+
+    <div class="benefit-card reveal">
+      <div class="benefit-stat">72<span class="unit">h</span></div>
+      <h3>Ciclos de producción de 72&nbsp;h</h3>
+      <p>Olvida los rodajes eternos. Tu estrategia se ejecuta en tiempo récord, sin agendar rodajes ni esperar semanas.</p>
+      <span class="benefit-tag">Velocidad</span>
+    </div>
+
+    <div class="benefit-card reveal">
+      <div class="benefit-stat">−90<span class="unit">%</span></div>
+      <h3>Optimización de activos</h3>
+      <p>Reducimos los costes operativos en un 90% mediante el uso de activos digitales de alta fidelidad. Sin local, sin actores, sin equipo de filmación.</p>
+      <span class="benefit-tag">Coste</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="section-header reveal">
+    <div class="section-num">// 03 — SISTEMA</div>
+    <h2 class="section-title">Nuestro sistema <em>100% remoto</em>.</h2>
+  </div>
+
+  <div class="steps">
+
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h3>Briefing exprés</h3>
+        <p>Completas el formulario y agendamos una <strong>llamada de 15 min</strong> para definir tu mensaje. Sin reuniones presenciales, sin agendas interminables — solo lo esencial para arrancar.</p>
+      </div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h3>Producción sistematizada</h3>
+        <p>Nuestro equipo diseña el guion y genera tu video utilizando los estándares más altos de la industria. Avatar, voz y movimiento. En el idioma que necesites: español, alemán o inglés.</p>
+      </div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h3>Primera entrega en 72h</h3>
+        <p>Recibes tus activos finales en formato vertical 9:16, listos para lanzar en Reels, TikTok, Stories y estado de WhatsApp. Gestión de feedback garantizada.</p>
+      </div>
+      <div class="step-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="contact-wrap">
+    <div class="section-num reveal" style="display: inline-block; margin-bottom: 24px;">// 04 — EMPECEMOS</div>
+    <h2 class="reveal">¿Listo para escalar tu <em>contenido</em>?</h2>
+    <p class="reveal">
+      Elige eficiencia. Elige resultados. Completa el inicio de tu proyecto ahora —
+      te llamamos en menos de 24 horas para arrancar tu briefing.
+    </p>
+
+    <form id="contact-form" class="reveal" action="https://formsubmit.co/ajax/info@fuegomedia.de" method="POST">
+      <input type="hidden" name="_subject" value="Nueva consulta VIDIA">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="field">
+        <label>Tu nombre</label>
+        <input type="text" name="nombre" placeholder="María García" required>
+      </div>
+      <div class="field">
+        <label>Tu negocio</label>
+        <input type="text" name="negocio" placeholder="Café Bockenheim" required>
+      </div>
+      <div class="field">
+        <label>Email o WhatsApp</label>
+        <input type="text" name="contacto" placeholder="hola@tunegocio.es" required>
+      </div>
+      <div class="field">
+        <label>Teléfono <span class="optional">(opcional)</span></label>
+        <input type="tel" name="telefono" placeholder="+34 600 123 456" autocomplete="tel">
+        <span class="field-hint">Si lo dejas, te llamamos directamente.</span>
+      </div>
+      <div class="field">
+        <label>Sector</label>
+        <select name="sector" required>
+          <option value="">Elige uno...</option>
+          <option>Gastronomía / Café / Bar</option>
+          <option>Belleza / Peluquería</option>
+          <option>Salud / Clínica</option>
+          <option>Comercio / Tienda</option>
+          <option>Servicios profesionales</option>
+          <option>Eventos / Locales</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label>Cuéntanos qué quieres comunicar</label>
+        <textarea name="mensaje" placeholder="Una nueva oferta, presentar el local, captar clientes nuevos..." required></textarea>
+      </div>
+      <button type="submit" class="submit">Empecemos la aventura →</button>
+      <div id="form-status" class="form-status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">VIDIA<span>.</span></div>
+  <div class="small">© 2026 · Hecho con cariño</div>
+  <div class="legal-links">
+    <a href="aviso-legal.html">Aviso Legal</a>
+    <span class="sep">·</span>
+    <a href="privacidad.html">Privacidad</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+  // Sound toggle for demo videos
+  const demoCards = document.querySelectorAll('.demo-thumb.has-video');
+  demoCards.forEach((thumb) => {
+    const video = thumb.querySelector('.demo-video');
+    const btn = thumb.querySelector('.sound-btn');
+    if (!video || !btn) return;
+
+    const toggleSound = (e) => {
+      e.stopPropagation();
+      const willUnmute = video.muted;
+
+      // Mute every other video first
+      demoCards.forEach((other) => {
+        if (other === thumb) return;
+        const v = other.querySelector('.demo-video');
+        const b = other.querySelector('.sound-btn');
+        if (v) { v.muted = true; v.currentTime = 0; }
+        if (b) b.classList.remove('is-on');
+        other.classList.remove('has-sound');
+      });
+
+      if (willUnmute) {
+        video.muted = false;
+        video.currentTime = 0;
+        const playPromise = video.play();
+        if (playPromise && playPromise.catch) playPromise.catch(() => {});
+        btn.classList.add('is-on');
+        thumb.classList.add('has-sound');
+        btn.setAttribute('aria-label', 'Silenciar');
+      } else {
+        video.muted = true;
+        btn.classList.remove('is-on');
+        thumb.classList.remove('has-sound');
+        btn.setAttribute('aria-label', 'Activar sonido');
+      }
+    };
+
+    btn.addEventListener('click', toggleSound);
+    video.addEventListener('click', toggleSound);
+  });
+
+  // Contact form (Formsubmit AJAX)
+  const form = document.getElementById('contact-form');
+  if (form) {
+    const status = document.getElementById('form-status');
+    const submitBtn = form.querySelector('button.submit');
+    const originalLabel = submitBtn.innerHTML;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.className = 'form-status';
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Enviando…';
+
+      try {
+        const data = new FormData(form);
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+
+        let json = {};
+        let raw = '';
+        try {
+          raw = await res.clone().text();
+          json = JSON.parse(raw);
+        } catch (_) { /* not JSON */ }
+
+        console.log('[VIDIA form] status:', res.status, 'body:', raw || json);
+
+        const success = json.success === true || json.success === 'true';
+        const msg = (json.message || '').toString().toLowerCase();
+
+        if (res.ok && success) {
+          // Pre-fill Calendly with what the user already wrote
+          const nameVal = (data.get('nombre') || '').toString().trim();
+          const contactoVal = (data.get('contacto') || '').toString().trim();
+          const calendlyEmail = contactoVal.includes('@') ? contactoVal : '';
+          const params = new URLSearchParams();
+          if (nameVal) params.set('name', nameVal);
+          if (calendlyEmail) params.set('email', calendlyEmail);
+          const calendlyUrl = 'https://calendly.com/vidia-info' + (params.toString() ? '?' + params.toString() : '');
+          const firstName = nameVal ? nameVal.split(' ')[0] : '';
+
+          // Replace whole form with a big success panel
+          const wrap = form.parentElement;
+          form.style.display = 'none';
+          const panel = document.createElement('div');
+          panel.className = 'success-panel reveal visible';
+          panel.innerHTML =
+            '<div class="success-eyebrow">// RECIBIDO ✓</div>' +
+            '<h3>¡Gracias' + (firstName ? ', ' + firstName : '') + '!</h3>' +
+            '<p class="success-sub"><strong>Te llamamos en menos de 24h</strong> para arrancar tu briefing.</p>' +
+            '<div class="success-divider"><span>¿prefieres elegir tú la hora?</span></div>' +
+            '<a href="' + calendlyUrl + '" target="_blank" rel="noopener noreferrer" class="success-cta">' +
+            'Reservar llamada (15 min) →</a>' +
+            '<p class="success-helper">Elige un hueco que te venga bien y arrancamos en ese mismo momento.</p>';
+          wrap.appendChild(panel);
+          panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else if (msg.includes('activate') || msg.includes('confirm') || msg.includes('verify')) {
+          status.innerHTML = 'Confirma el email <strong>info@fuegomedia.de</strong> para activar el formulario (revisa tu bandeja de entrada y spam). Después funcionará automáticamente.';
+          status.classList.add('show', 'error');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalLabel;
+        } else if (msg.includes('web server') || msg.includes('html files') || location.protocol === 'file:') {
+          status.innerHTML = 'Esta página debe servirse desde un servidor web (no abrir el archivo HTML directamente). Despliégala o ábrela vía localhost para que el formulario funcione.';
+          status.classList.add('show', 'error');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalLabel;
+        } else {
+          throw new Error('HTTP ' + res.status + ' — ' + (json.message || raw.slice(0, 200) || 'sin respuesta'));
+        }
+      } catch (err) {
+        console.error('[VIDIA form] error:', err);
+        status.innerHTML = 'No pudimos enviar el formulario.<br><small>(' + (err.message || err) + ')</small><br>Escríbenos directamente a <a href="mailto:info@fuegomedia.de" style="color:inherit;text-decoration:underline">info@fuegomedia.de</a>';
+        status.classList.add('show', 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalLabel;
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

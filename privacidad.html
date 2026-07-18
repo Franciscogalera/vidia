@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Política de Privacidad · VIDIA</title>
+<meta name="description" content="Política de privacidad de VIDIA — qué datos tratamos, con qué base legal y cuáles son tus derechos según el RGPD." />
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,600;10..48,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFF4E6;
+    --ink: #0E0E0E;
+    --hot: #FF4D2E;
+    --lime: #C6FF3D;
+    --violet: #5A3FFF;
+    --pink: #FFC2D1;
+    --paper: #FFEED1;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 20px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg);
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .logo { font-weight: 800; font-size: 22px; letter-spacing: -0.02em; text-decoration: none; color: var(--ink); }
+  .logo span { color: var(--hot); }
+  .back {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    border-radius: 100px;
+    padding: 8px 14px;
+    transition: all 0.2s ease;
+  }
+  .back:hover { background: var(--ink); color: var(--bg); }
+
+  main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    position: relative;
+    z-index: 2;
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 6px 14px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+  h1 em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--violet);
+    font-weight: 400;
+  }
+  .lead {
+    color: rgba(14,14,14,0.7);
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  .stand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(14,14,14,0.6);
+    margin-bottom: 56px;
+    letter-spacing: 0.05em;
+  }
+
+  section.block {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 24px;
+    padding: 32px;
+    margin-bottom: 20px;
+  }
+  section.block h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  section.block .subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(14,14,14,0.6);
+    letter-spacing: 0.05em;
+    margin-bottom: 18px;
+  }
+  section.block h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 18px;
+    margin-bottom: 6px;
+  }
+  section.block p { font-size: 15px; margin-bottom: 12px; }
+  section.block p:last-child { margin-bottom: 0; }
+  section.block strong { font-weight: 700; }
+  section.block a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  section.block a:hover { color: var(--hot); }
+  section.block ul { padding-left: 22px; margin: 8px 0; }
+  section.block li { margin-bottom: 6px; font-size: 15px; }
+  .legal-base {
+    font-size: 13px;
+    background: var(--bg);
+    border: 1.5px solid var(--ink);
+    border-radius: 8px;
+    padding: 8px 12px;
+    display: inline-block;
+    margin-top: 8px;
+  }
+  .pill-row { margin-bottom: 14px; }
+  .pill {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: 1.5px solid var(--ink);
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-right: 6px;
+  }
+  .pill.lime { background: var(--lime); }
+  .pill.pink { background: var(--pink); }
+  .address { font-size: 16px; line-height: 1.6; }
+
+  footer {
+    border-top: 1.5px solid var(--ink);
+    padding: 32px;
+    text-align: center;
+    background: var(--ink);
+    color: var(--bg);
+    position: relative;
+    z-index: 2;
+  }
+  footer .footer-logo { font-weight: 800; font-size: 28px; letter-spacing: -0.02em; margin-bottom: 12px; }
+  footer .footer-logo span { color: var(--hot); }
+  footer .small { font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: 0.7; }
+  footer .links { margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+  footer .links a { color: var(--bg); text-decoration: none; margin: 0 8px; opacity: 0.8; }
+  footer .links a:hover { opacity: 1; text-decoration: underline; }
+
+  @media (max-width: 700px) {
+    main { padding: 56px 20px 80px; }
+    nav { padding: 14px 20px; }
+    section.block { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">VIDIA<span>.</span></a>
+  <a href="index.html" class="back">← Volver</a>
+</nav>
+
+<main>
+  <span class="eyebrow">// LEGAL</span>
+  <h1>Política de <em>Privacidad</em></h1>
+  <p class="lead">Cómo tratamos tus datos cuando visitas este sitio o nos contactas. Cumple con el RGPD (UE) y la BDSG (Alemania).</p>
+  <p class="stand">Última actualización: 02/05/2026</p>
+
+  <section class="block">
+    <h2>1. Responsable del tratamiento</h2>
+    <p>Responsable del tratamiento de los datos en este sitio web:</p>
+    <p class="address">
+      <strong>Francisco Galera</strong><br>
+      Jugenheimer Str. 43<br>
+      60528 Frankfurt am Main, Alemania<br>
+      Email: <a href="mailto:info@fuegomedia.de">info@fuegomedia.de</a>
+    </p>
+  </section>
+
+  <section class="block">
+    <h2>2. Datos que tratamos</h2>
+    <p class="subtitle">Qué información recogemos y por qué</p>
+
+    <h3>2.1 Datos del formulario de contacto</h3>
+    <p>Cuando rellenas el formulario de contacto en la página de inicio, tratamos los siguientes datos:</p>
+    <ul>
+      <li>Nombre</li>
+      <li>Nombre del negocio</li>
+      <li>Email o número de WhatsApp</li>
+      <li>Sector</li>
+      <li>El mensaje que escribes</li>
+      <li>Marca temporal del envío</li>
+    </ul>
+    <p>Usamos estos datos exclusivamente para responderte y elaborar una propuesta para tu negocio.</p>
+    <p class="legal-base"><strong>Base legal:</strong> Art. 6 ap. 1 lit. b RGPD (medidas precontractuales) y lit. f (interés legítimo en responder consultas).</p>
+
+    <h3>2.2 Datos del servidor (logs)</h3>
+    <p>Al visitar la web, el proveedor de hosting registra automáticamente:</p>
+    <ul>
+      <li>Dirección IP (anonimizada cuando es posible)</li>
+      <li>Fecha y hora de la solicitud</li>
+      <li>Página solicitada y método HTTP</li>
+      <li>Navegador y sistema operativo (User-Agent)</li>
+      <li>Página de procedencia (referrer), si está disponible</li>
+    </ul>
+    <p>Estos datos sirven exclusivamente para mantener el sitio operativo, prevenir abusos y diagnosticar errores. No se asocian con tu persona.</p>
+    <p class="legal-base"><strong>Base legal:</strong> Art. 6 ap. 1 lit. f RGPD (interés legítimo en seguridad y estabilidad).</p>
+  </section>
+
+  <section class="block">
+    <h2>3. Servicios externos</h2>
+    <p class="subtitle">Proveedores con los que compartimos datos para que el sitio funcione</p>
+
+    <h3>3.1 Formsubmit (envío del formulario)</h3>
+    <p>Proveedor: Formsubmit (operado en EE. UU.).</p>
+    <p>
+      El formulario de contacto se envía a través del servicio Formsubmit, que reenvía los datos a nuestra dirección de correo
+      <strong>info@fuegomedia.de</strong>. Formsubmit procesa los campos del formulario y, en su caso, la dirección IP del remitente para
+      prevenir spam.
+    </p>
+    <p>Política de privacidad: <a href="https://formsubmit.co/privacy-policy" target="_blank" rel="noopener noreferrer">formsubmit.co/privacy-policy</a></p>
+    <p class="legal-base"><strong>Base legal:</strong> Art. 6 ap. 1 lit. b RGPD (medidas precontractuales).</p>
+
+    <h3>3.2 Hosting / red de entrega</h3>
+    <p>El sitio se aloja en un proveedor de hosting profesional dentro de la UE o, en su caso, mediante una CDN con presencia europea. El proveedor recibe únicamente los datos de servidor descritos en el punto 2.2.</p>
+    <p class="legal-base"><strong>Base legal:</strong> Art. 6 ap. 1 lit. f RGPD (interés legítimo en operar el sitio).</p>
+
+    <h3>3.3 Google Fonts</h3>
+    <p>Las tipografías Bricolage Grotesque, Instrument Serif y JetBrains Mono se cargan desde los servidores de Google Fonts. Al hacerlo, tu navegador transmite tu dirección IP a Google. No se establecen cookies.</p>
+    <p>Proveedor: Google Ireland Ltd. — Política de privacidad: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a></p>
+    <p class="legal-base"><strong>Base legal:</strong> Art. 6 ap. 1 lit. f RGPD (presentación uniforme del sitio).</p>
+
+    <h3>3.4 Vídeos de demostración</h3>
+    <p>Los vídeos demostrativos se reproducen directamente desde nuestro propio servidor, sin uso de servicios externos como YouTube o Vimeo. No se transmiten datos a terceros al reproducirlos.</p>
+  </section>
+
+  <section class="block">
+    <h2>4. Cookies y tracking</h2>
+    <p class="subtitle">Qué archivamos en tu navegador</p>
+    <div class="pill-row">
+      <span class="pill lime">Cookies: 0</span>
+      <span class="pill pink">Tracking: 0</span>
+    </div>
+    <p>Esta página <strong>no utiliza cookies</strong> ni herramientas de seguimiento, ni propias ni de terceros. Tampoco usamos huellas digitales (fingerprinting), píxeles publicitarios ni almacenamiento local con fines de análisis.</p>
+    <p>Si en el futuro se incorporaran herramientas de análisis o publicidad, te informaríamos previamente y solicitaríamos tu consentimiento.</p>
+  </section>
+
+  <section class="block">
+    <h2>5. Tus derechos</h2>
+    <p class="subtitle">Qué puedes hacer en relación con tus datos</p>
+    <p>Conforme al RGPD tienes los siguientes derechos:</p>
+    <ul>
+      <li><strong>Acceso (Art. 15 RGPD):</strong> obtener una copia de los datos que tratamos sobre ti.</li>
+      <li><strong>Rectificación (Art. 16 RGPD):</strong> corregir datos incorrectos o incompletos.</li>
+      <li><strong>Supresión (Art. 17 RGPD):</strong> solicitar la eliminación de tus datos.</li>
+      <li><strong>Limitación (Art. 18 RGPD):</strong> restringir el tratamiento.</li>
+      <li><strong>Portabilidad (Art. 20 RGPD):</strong> recibir tus datos en un formato estructurado.</li>
+      <li><strong>Oposición (Art. 21 RGPD):</strong> oponerte al tratamiento basado en interés legítimo.</li>
+      <li><strong>Retirada del consentimiento:</strong> revocar en cualquier momento un consentimiento dado, con efectos a futuro.</li>
+    </ul>
+    <p>Para ejercer cualquiera de estos derechos, escríbenos a <strong>info@fuegomedia.de</strong>.</p>
+  </section>
+
+  <section class="block">
+    <h2>6. Plazos de conservación</h2>
+    <p>Conservamos los datos solo el tiempo necesario para la finalidad para la que fueron recogidos:</p>
+    <ul>
+      <li>Mensajes del formulario: hasta 24 meses tras el último contacto, salvo que de la consulta se derive una relación contractual.</li>
+      <li>Logs del servidor: máximo 30 días, después se eliminan o anonimizan.</li>
+      <li>Documentación contractual y fiscal: durante los plazos de conservación legales (hasta 10 años, § 147 AO en Alemania).</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>7. Seguridad de los datos</h2>
+    <p>Protegemos tu información mediante:</p>
+    <ul>
+      <li>Cifrado HTTPS para toda la transmisión de datos.</li>
+      <li>Acceso restringido a la bandeja donde llegan los formularios.</li>
+      <li>Actualizaciones periódicas del software del sitio y del servidor.</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2>8. Cambios en esta política</h2>
+    <p>Nos reservamos el derecho a actualizar esta política de privacidad para adaptarla a cambios legales o del servicio. La versión vigente está siempre disponible en esta misma URL.</p>
+  </section>
+
+  <section class="block">
+    <h2>9. Contacto y reclamaciones</h2>
+    <p>Si tienes preguntas sobre privacidad, escríbenos a <strong>info@fuegomedia.de</strong>.</p>
+    <p>Tienes además el derecho a presentar una reclamación ante una autoridad de control, por ejemplo:</p>
+    <p>
+      <strong>Der Hessische Beauftragte für Datenschutz und Informationsfreiheit</strong><br>
+      Postfach 3163, 65021 Wiesbaden, Alemania<br>
+      <a href="https://datenschutz.hessen.de" target="_blank" rel="noopener noreferrer">datenschutz.hessen.de</a>
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-logo">VIDIA<span>.</span></div>
+  <div class="small">© 2026 · Hecho con cariño</div>
+  <div class="links">
+    <a href="index.html">Inicio</a> ·
+    <a href="aviso-legal.html">Aviso Legal</a> ·
+    <a href="privacidad.html">Privacidad</a>
+  </div>
+</footer>
+
+</body>
+</html>

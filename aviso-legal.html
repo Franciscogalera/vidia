@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aviso Legal · VIDIA</title>
+<meta name="description" content="Aviso legal e información del proveedor según § 5 TMG (Alemania) — VIDIA / Francisco Galera / Fuego Media." />
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,600;10..48,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFF4E6;
+    --ink: #0E0E0E;
+    --hot: #FF4D2E;
+    --lime: #C6FF3D;
+    --violet: #5A3FFF;
+    --pink: #FFC2D1;
+    --paper: #FFEED1;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 20px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg);
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .logo { font-weight: 800; font-size: 22px; letter-spacing: -0.02em; text-decoration: none; color: var(--ink); }
+  .logo span { color: var(--hot); }
+  .back {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    border-radius: 100px;
+    padding: 8px 14px;
+    transition: all 0.2s ease;
+  }
+  .back:hover { background: var(--ink); color: var(--bg); }
+
+  main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    position: relative;
+    z-index: 2;
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 6px 14px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+  h1 em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--violet);
+    font-weight: 400;
+  }
+  .lead {
+    color: rgba(14,14,14,0.7);
+    font-size: 18px;
+    margin-bottom: 56px;
+  }
+
+  section.block {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 24px;
+    padding: 32px;
+    margin-bottom: 20px;
+  }
+  section.block:nth-of-type(odd) { background: var(--paper); }
+  section.block h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+  section.block h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 18px;
+    margin-bottom: 6px;
+  }
+  section.block p { font-size: 15px; margin-bottom: 12px; }
+  section.block p:last-child { margin-bottom: 0; }
+  section.block strong { font-weight: 700; }
+  section.block a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  section.block a:hover { color: var(--hot); }
+  section.block ul { padding-left: 22px; margin: 8px 0; }
+  section.block li { margin-bottom: 6px; font-size: 15px; }
+  section.block .pill {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: 1.5px solid var(--ink);
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-right: 6px;
+  }
+  .address {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  footer {
+    border-top: 1.5px solid var(--ink);
+    padding: 32px;
+    text-align: center;
+    background: var(--ink);
+    color: var(--bg);
+    position: relative;
+    z-index: 2;
+  }
+  footer .footer-logo { font-weight: 800; font-size: 28px; letter-spacing: -0.02em; margin-bottom: 12px; }
+  footer .footer-logo span { color: var(--hot); }
+  footer .small { font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: 0.7; }
+  footer .links { margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+  footer .links a { color: var(--bg); text-decoration: none; margin: 0 8px; opacity: 0.8; }
+  footer .links a:hover { opacity: 1; text-decoration: underline; }
+
+  @media (max-width: 700px) {
+    main { padding: 56px 20px 80px; }
+    nav { padding: 14px 20px; }
+    section.block { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">VIDIA<span>.</span></a>
+  <a href="index.html" class="back">← Volver</a>
+</nav>
+
+<main>
+  <span class="eyebrow">// LEGAL</span>
+  <h1>Aviso <em>Legal</em></h1>
+  <p class="lead">Información obligatoria según § 5 de la Ley alemana de Telemedios (TMG).</p>
+
+  <section class="block">
+    <h2>Datos del proveedor (§ 5 TMG)</h2>
+    <p class="address">
+      <strong>Francisco Galera</strong><br>
+      Jugenheimer Str. 43<br>
+      60528 Frankfurt am Main<br>
+      Alemania
+    </p>
+    <h3>Contacto</h3>
+    <p>
+      Email: <a href="mailto:info@fuegomedia.de">info@fuegomedia.de</a><br>
+      Web: <a href="https://www.fuegomedia.de" target="_blank" rel="noopener noreferrer">https://www.fuegomedia.de</a>
+    </p>
+  </section>
+
+  <section class="block">
+    <h2>Representación</h2>
+    <p>Francisco Galera (titular).</p>
+  </section>
+
+  <section class="block">
+    <h2>Número de Identificación Fiscal (USt-ID)</h2>
+    <p>
+      Número de identificación fiscal según § 27 a de la Ley alemana del IVA:<br>
+      <strong>DE339874740</strong>
+    </p>
+  </section>
+
+  <section class="block">
+    <h2>Responsable del contenido (§ 55 párr. 2 RStV)</h2>
+    <p class="address">
+      Francisco Galera<br>
+      Jugenheimer Str. 43, 60528 Frankfurt am Main, Alemania
+    </p>
+  </section>
+
+  <section class="block">
+    <h2>Resolución de litigios en línea de la UE</h2>
+    <p>
+      La Comisión Europea pone a disposición una plataforma para la resolución de litigios en línea (ODR):
+    </p>
+    <p>
+      <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>
+    </p>
+    <p>Nuestra dirección de correo electrónico figura más arriba en este aviso legal.</p>
+  </section>
+
+  <section class="block">
+    <h2>Resolución de litigios en materia de consumo</h2>
+    <p>
+      No estamos obligados ni dispuestos a participar en procedimientos de resolución de litigios ante un organismo de
+      arbitraje de consumo.
+    </p>
+  </section>
+
+  <section class="block">
+    <h2>Exención de responsabilidad</h2>
+
+    <h3>Responsabilidad por contenidos</h3>
+    <p>
+      Como prestador de servicios somos responsables de los contenidos propios de estas páginas según las leyes
+      generales conforme al § 7, párr. 1 TMG. Sin embargo, según los §§ 8 a 10 TMG, no estamos obligados a supervisar
+      la información transmitida o almacenada de terceros, ni a investigar circunstancias que apunten a una actividad
+      ilegal.
+    </p>
+
+    <h3>Responsabilidad por enlaces</h3>
+    <p>
+      Nuestra oferta contiene enlaces a sitios web externos de terceros sobre cuyos contenidos no tenemos influencia.
+      Por ello, no podemos asumir ninguna garantía sobre estos contenidos ajenos. La responsabilidad sobre los
+      contenidos de los sitios enlazados recae siempre en el respectivo proveedor u operador.
+    </p>
+
+    <h3>Derechos de autor</h3>
+    <p>
+      Los contenidos y obras creados por los operadores del sitio en estas páginas están sujetos a la legislación
+      alemana sobre derechos de autor. La reproducción, edición, distribución y cualquier forma de explotación fuera
+      de los límites de los derechos de autor requiere el consentimiento por escrito del autor o creador
+      correspondiente.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-logo">VIDIA<span>.</span></div>
+  <div class="small">© 2026 · Hecho con cariño</div>
+  <div class="links">
+    <a href="index.html">Inicio</a> ·
+    <a href="aviso-legal.html">Aviso Legal</a> ·
+    <a href="privacidad.html">Privacidad</a>
+  </div>
+</footer>
+
+</body>
+</html>

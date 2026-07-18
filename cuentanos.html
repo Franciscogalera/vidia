@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VIDIA · Cuéntanos tu proyecto</title>
+<meta name="description" content="Rellena el briefing y empezamos a producir tu vídeo. Cuéntanos tu idea, tu mensaje y sube tu material — sin reuniones.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,600;10..48,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFF4E6;
+    --ink: #0E0E0E;
+    --hot: #FF4D2E;
+    --lime: #C6FF3D;
+    --violet: #5A3FFF;
+    --pink: #FFC2D1;
+    --paper: #FFEED1;
+    --grid-line: rgba(14,14,14,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.4;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  .serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: difference;
+    color: white;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 32px;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    text-decoration: none;
+    color: white;
+  }
+  .logo span { color: var(--hot); mix-blend-mode: normal; }
+  nav .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  nav .nav-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: white;
+    transition: opacity 0.2s ease;
+  }
+  nav .nav-link:hover { opacity: 0.6; }
+  nav .nav-link.active { text-decoration: underline; text-underline-offset: 5px; }
+
+  /* ---------- HEADER ---------- */
+  .page-head {
+    padding: 150px 32px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+  }
+  .head-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+  .page-title {
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+  }
+  .page-title em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--violet);
+    font-weight: 400;
+  }
+  .page-sub {
+    margin: 24px auto 0;
+    max-width: 52ch;
+    font-size: 18px;
+    color: rgba(14,14,14,0.75);
+  }
+
+  /* ---------- FORM ---------- */
+  .brief {
+    padding: 40px 32px 120px;
+    position: relative;
+  }
+  form {
+    max-width: 720px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    text-align: left;
+  }
+
+  /* Bloque-Überschrift innerhalb des Formulars */
+  .form-block {
+    grid-column: 1 / -1;
+    margin-top: 24px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .form-block:first-of-type { margin-top: 0; }
+  .form-block .block-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  .form-block h2 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .field { position: relative; }
+  .field.full { grid-column: 1 / -1; }
+  .field label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    color: rgba(14,14,14,0.6);
+  }
+  .field label .optional {
+    text-transform: none;
+    letter-spacing: 0;
+    color: rgba(14,14,14,0.4);
+    margin-left: 4px;
+  }
+  .field .field-hint {
+    display: block;
+    margin-top: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(14,14,14,0.55);
+    letter-spacing: 0.02em;
+  }
+  .field input[type="text"],
+  .field input[type="email"],
+  .field input[type="tel"],
+  .field input[type="url"],
+  .field textarea {
+    width: 100%;
+    padding: 18px 20px;
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 12px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 16px;
+    color: var(--ink);
+    transition: all 0.2s ease;
+  }
+  .field input:focus, .field textarea:focus {
+    outline: none;
+    background: var(--lime);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .field textarea { min-height: 120px; resize: vertical; font-family: inherit; }
+
+  /* Upload-Feld (Datei) */
+  .upload {
+    grid-column: 1 / -1;
+  }
+  .upload.half { grid-column: auto; }
+  .upload input[type="file"] { display: none; }
+  .upload .drop {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 18px 20px;
+    background: var(--paper);
+    border: 1.5px dashed var(--ink);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .upload .drop:hover {
+    background: var(--lime);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .upload .drop .ico {
+    width: 40px; height: 40px;
+    flex-shrink: 0;
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: 10px;
+    display: grid; place-items: center;
+    font-size: 20px;
+  }
+  .upload .drop .txt { font-size: 15px; }
+  .upload .drop .txt .fname {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(14,14,14,0.55);
+    margin-top: 3px;
+  }
+  .upload .drop.has-file { border-style: solid; background: var(--pink); }
+
+  button.submit {
+    grid-column: 1 / -1;
+    background: var(--hot);
+    color: var(--bg);
+    border: 2px solid var(--ink);
+    padding: 22px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    box-shadow: 6px 6px 0 var(--ink);
+    margin-top: 24px;
+  }
+  button.submit:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 var(--ink);
+    background: var(--violet);
+  }
+  button.submit:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--ink);
+  }
+  button.submit[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: 6px 6px 0 var(--ink) !important;
+  }
+  .form-status {
+    grid-column: 1 / -1;
+    margin-top: 8px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-align: center;
+    display: none;
+  }
+  .form-status.show { display: block; }
+  .form-status.ok { background: var(--lime); border: 1.5px solid var(--ink); color: var(--ink); }
+  .form-status.error { background: var(--hot); border: 1.5px solid var(--ink); color: var(--bg); }
+
+  .privacy-note {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(14,14,14,0.5);
+    text-align: center;
+  }
+  .privacy-note a { color: inherit; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 48px 32px 32px;
+    text-align: center;
+  }
+  footer .footer-logo {
+    font-size: 96px;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+  footer .footer-logo span { color: var(--hot); font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+  footer .small {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,244,230,0.5);
+    letter-spacing: 0.05em;
+  }
+  footer .legal-links {
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+  footer .legal-links a {
+    color: rgba(255,244,230,0.7);
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.2s ease;
+  }
+  footer .legal-links a:hover { color: var(--hot); }
+  footer .legal-links .sep { color: rgba(255,244,230,0.3); }
+
+  /* ---------- REVEAL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.2,.8,.2,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 720px) {
+    form { grid-template-columns: 1fr; }
+    .page-head { padding: 120px 20px 16px; }
+    .brief { padding: 32px 20px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">VIDIA<span>.</span></a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link">Inicio</a>
+    <a href="packs.html" class="nav-link">Packs</a>
+    <a href="cuentanos.html" class="nav-link active" aria-current="page">Cuéntanos</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<section class="page-head">
+  <div class="page-grid"></div>
+  <div class="head-inner">
+    <div class="eyebrow">// CUÉNTANOS</div>
+    <h1 class="page-title">Cuéntanos tu <em>proyecto</em>.</h1>
+    <p class="page-sub">
+      Rellena este briefing y empezamos a producir tu vídeo. Cuanto más claro,
+      mejor — sin reuniones y sin perder tiempo.
+    </p>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="brief">
+  <form id="brief-form" class="reveal" action="https://formsubmit.co/ajax/info@fuegomedia.de" method="POST" enctype="multipart/form-data">
+    <!-- Formsubmit config -->
+    <input type="hidden" name="_subject" value="Nuevo brief VIDIA">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+    <!-- werden per JS mit den Blob-Links gefüllt -->
+    <input type="hidden" name="Logo (enlace)" id="url-logo">
+    <input type="hidden" name="Fotos (enlaces)" id="url-fotos">
+    <input type="hidden" name="Foto avatar (enlace)" id="url-avatar">
+    <input type="hidden" name="Vídeo (enlace)" id="url-video">
+
+    <!-- BLOQUE A -->
+    <div class="form-block"><span class="block-num">A</span><h2>Tú y tu empresa</h2></div>
+
+    <div class="field">
+      <label for="nombre">Nombre de contacto</label>
+      <input type="text" id="nombre" name="Nombre" required>
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="Email" required>
+    </div>
+    <div class="field">
+      <label for="telefono">Teléfono / WhatsApp <span class="optional">(opcional)</span></label>
+      <input type="tel" id="telefono" name="Teléfono">
+    </div>
+    <div class="field">
+      <label for="redes">Redes sociales <span class="optional">(opcional)</span></label>
+      <input type="text" id="redes" name="Redes sociales" placeholder="Instagram, TikTok…">
+    </div>
+    <div class="field full">
+      <label for="empresa">Empresa y a qué os dedicáis</label>
+      <input type="text" id="empresa" name="Empresa" required placeholder="Nombre del negocio + sector / producto">
+    </div>
+    <div class="field full">
+      <label for="web">Web <span class="optional">(opcional)</span></label>
+      <input type="url" id="web" name="Web" placeholder="https://…">
+    </div>
+
+    <!-- BLOQUE B -->
+    <div class="form-block"><span class="block-num">B</span><h2>El vídeo que quieres</h2></div>
+
+    <div class="field full">
+      <label for="idea">Tu idea y mensaje principal</label>
+      <textarea id="idea" name="Idea y mensaje" required placeholder="¿Qué quieres comunicar? Cuéntanoslo en 2–3 frases."></textarea>
+    </div>
+    <div class="field full">
+      <label for="cta">Llamada a la acción</label>
+      <input type="text" id="cta" name="Llamada a la acción" required placeholder="Qué debe hacer quien lo ve (visitar la web, comprar, escribir…)">
+      <span class="field-hint">Añade el enlace, oferta o teléfono al que dirigir.</span>
+    </div>
+    <div class="field full">
+      <label for="guion">Texto o guion <span class="optional">(opcional)</span></label>
+      <textarea id="guion" name="Texto o guion" placeholder="Si ya tienes un texto, pégalo aquí. Si no, lo escribimos nosotros."></textarea>
+    </div>
+
+    <!-- BLOQUE C -->
+    <div class="form-block"><span class="block-num">C</span><h2>Tu material</h2></div>
+
+    <div class="upload">
+      <label for="f-logo" class="field-label" style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(14,14,14,0.6);display:block;margin-bottom:8px;">Logo</label>
+      <input type="file" id="f-logo" accept="image/*,.svg">
+      <label for="f-logo" class="drop"><span class="ico">↑</span><span class="txt">Sube tu logo (PNG, JPG o SVG)<span class="fname"></span></span></label>
+    </div>
+
+    <div class="upload">
+      <label for="f-fotos" class="field-label" style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(14,14,14,0.6);display:block;margin-bottom:8px;">Fotos del negocio / producto</label>
+      <input type="file" id="f-fotos" accept="image/*" multiple>
+      <label for="f-fotos" class="drop"><span class="ico">↑</span><span class="txt">Sube una o varias fotos para el fondo<span class="fname"></span></span></label>
+    </div>
+
+    <div class="upload">
+      <label for="f-avatar" class="field-label" style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(14,14,14,0.6);display:block;margin-bottom:8px;">Foto de referencia para el avatar <span class="optional" style="text-transform:none;letter-spacing:0;color:rgba(14,14,14,0.4);">(opcional)</span></label>
+      <input type="file" id="f-avatar" accept="image/*">
+      <label for="f-avatar" class="drop"><span class="ico">↑</span><span class="txt">Si quieres un avatar parecido a alguien<span class="fname"></span></span></label>
+    </div>
+
+    <div class="upload">
+      <label for="f-video" class="field-label" style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(14,14,14,0.6);display:block;margin-bottom:8px;">Vídeo del negocio <span class="optional" style="text-transform:none;letter-spacing:0;color:rgba(14,14,14,0.4);">(opcional)</span></label>
+      <input type="file" id="f-video" accept="video/*">
+      <label for="f-video" class="drop"><span class="ico">↑</span><span class="txt">Un vídeo del local o producto para el fondo<span class="fname"></span></span></label>
+    </div>
+
+    <div id="form-status" class="form-status"></div>
+    <button type="submit" class="submit">Enviar briefing →</button>
+    <p class="privacy-note">Al enviar aceptas nuestra <a href="privacidad.html">política de privacidad</a>.</p>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">VIDIA<span>.</span></div>
+  <div class="small">© 2026 · Hecho con cariño</div>
+  <div class="legal-links">
+    <a href="aviso-legal.html">Aviso Legal</a>
+    <span class="sep">·</span>
+    <a href="privacidad.html">Privacidad</a>
+  </div>
+</footer>
+
+<script>
+  // Reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+  // Dateinamen im Drop-Feld anzeigen
+  document.querySelectorAll('.upload input[type="file"]').forEach((input) => {
+    const drop = input.parentElement.querySelector('.drop');
+    const fname = drop.querySelector('.fname');
+    input.addEventListener('change', () => {
+      if (!input.files.length) { drop.classList.remove('has-file'); fname.textContent = ''; return; }
+      const names = Array.from(input.files).map((f) => f.name);
+      fname.textContent = names.length > 1 ? names.length + ' archivos seleccionados' : names[0];
+      drop.classList.add('has-file');
+    });
+  });
+
+  // Formular: erst Dateien in Vercel Blob laden, dann Text + Links per Mail senden
+  const form = document.getElementById('brief-form');
+  const status = document.getElementById('form-status');
+  const submitBtn = form.querySelector('button.submit');
+  const originalLabel = submitBtn.innerHTML;
+  const BLOB_CLIENT = 'https://esm.sh/@vercel/blob@2.6.1/client';
+
+  function slugify(s) {
+    return (s || 'cliente').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 40) || 'cliente';
+  }
+  function setStatus(msg, kind) {
+    status.innerHTML = msg;
+    status.className = 'form-status show' + (kind ? ' ' + kind : '');
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const fLogo = document.getElementById('f-logo');
+    const fFotos = document.getElementById('f-fotos');
+    const fAvatar = document.getElementById('f-avatar');
+    const fVideo = document.getElementById('f-video');
+
+    // Pflicht-Uploads prüfen
+    if (!fLogo.files.length) { setStatus('Sube tu logo para continuar.', 'error'); return; }
+    if (!fFotos.files.length) { setStatus('Sube al menos una foto del negocio.', 'error'); return; }
+
+    submitBtn.disabled = true;
+    setStatus('Preparando el envío…');
+
+    try {
+      const { upload } = await import(BLOB_CLIENT);
+      const slug = slugify(document.getElementById('empresa').value);
+      const stamp = Date.now();
+
+      async function put(file, tag) {
+        const ext = (file.name.split('.').pop() || 'bin').toLowerCase();
+        const path = 'briefs/' + slug + '/' + stamp + '-' + tag + '.' + ext;
+        const res = await upload(path, file, {
+          access: 'public',
+          handleUploadUrl: '/api/upload',
+          multipart: file.size > 4 * 1024 * 1024,
+          onUploadProgress: (p) => setStatus('Subiendo ' + tag + '… ' + Math.round(p.percentage) + '%'),
+        });
+        return res.url;
+      }
+
+      document.getElementById('url-logo').value = await put(fLogo.files[0], 'logo');
+
+      const fotoUrls = [];
+      for (let i = 0; i < fFotos.files.length; i++) {
+        fotoUrls.push(await put(fFotos.files[i], 'foto-' + (i + 1)));
+      }
+      document.getElementById('url-fotos').value = fotoUrls.join('\n');
+
+      if (fAvatar.files.length) {
+        document.getElementById('url-avatar').value = await put(fAvatar.files[0], 'avatar');
+      }
+      let hasVideo = false;
+      if (fVideo.files.length) {
+        document.getElementById('url-video').value = await put(fVideo.files[0], 'video');
+        hasVideo = true;
+      }
+
+      // Betreff dynamisch: Firma + Hinweis auf Video
+      const empresaVal = document.getElementById('empresa').value.trim();
+      form.querySelector('input[name="_subject"]').value =
+        'Nuevo brief — ' + (empresaVal || 'sin nombre') + (hasVideo ? ' (con vídeo)' : '');
+
+      // Text + Links per Mail; Datei-Inputs haben kein name-Attribut → nicht im FormData
+      setStatus('Enviando briefing…');
+      const data = new FormData(form);
+      const mail = await fetch(form.action, {
+        method: 'POST', body: data, headers: { Accept: 'application/json' },
+      });
+      const json = await mail.json().catch(() => ({}));
+
+      if (mail.ok && (json.success === true || json.success === 'true')) {
+        form.style.display = 'none';
+        const panel = document.createElement('div');
+        panel.className = 'form-status show ok';
+        panel.style.display = 'block';
+        panel.innerHTML = '<strong>¡Recibido! ✓</strong><br>Gracias, hemos recibido tu briefing y tu material. Te escribimos en menos de 24 h.';
+        form.parentElement.appendChild(panel);
+        panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        throw new Error(json.message || ('HTTP ' + mail.status));
+      }
+    } catch (err) {
+      console.error('[VIDIA brief] error:', err);
+      setStatus('No pudimos enviar el formulario.<br><small>(' + (err.message || err) + ')</small><br>Escríbenos a <a href="mailto:info@fuegomedia.de" style="color:inherit;">info@fuegomedia.de</a>', 'error');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalLabel;
+    }
+  });
+</script>
+
+</body>
+</html>
