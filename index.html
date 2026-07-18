@@ -1221,7 +1221,7 @@
       te llamamos en menos de 24 horas para arrancar tu briefing.
     </p>
 
-    <form id="contact-form" class="reveal" action="https://formsubmit.co/ajax/info@fuegomedia.de" method="POST">
+    <form id="contact-form" class="reveal" action="https://formsubmit.co/ajax/info@vidia.online" method="POST">
       <input type="hidden" name="_subject" value="Nueva consulta VIDIA">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="false">
@@ -1393,7 +1393,7 @@
           wrap.appendChild(panel);
           panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else if (msg.includes('activate') || msg.includes('confirm') || msg.includes('verify')) {
-          status.innerHTML = 'Confirma el email <strong>info@fuegomedia.de</strong> para activar el formulario (revisa tu bandeja de entrada y spam). Después funcionará automáticamente.';
+          status.innerHTML = 'Confirma el email <strong>info@vidia.online</strong> para activar el formulario (revisa tu bandeja de entrada y spam). Después funcionará automáticamente.';
           status.classList.add('show', 'error');
           submitBtn.disabled = false;
           submitBtn.innerHTML = originalLabel;
@@ -1407,7 +1407,7 @@
         }
       } catch (err) {
         console.error('[VIDIA form] error:', err);
-        status.innerHTML = 'No pudimos enviar el formulario.<br><small>(' + (err.message || err) + ')</small><br>Escríbenos directamente a <a href="mailto:info@fuegomedia.de" style="color:inherit;text-decoration:underline">info@fuegomedia.de</a>';
+        status.innerHTML = 'No pudimos enviar el formulario.<br><small>(' + (err.message || err) + ')</small><br>Escríbenos directamente a <a href="mailto:info@vidia.online" style="color:inherit;text-decoration:underline">info@vidia.online</a>';
         status.classList.add('show', 'error');
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalLabel;
