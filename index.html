@@ -1364,15 +1364,16 @@
         const msg = (json.message || '').toString().toLowerCase();
 
         if (res.ok && success) {
-          // Pre-fill Calendly with what the user already wrote
           const nameVal = (data.get('nombre') || '').toString().trim();
-          const contactoVal = (data.get('contacto') || '').toString().trim();
-          const calendlyEmail = contactoVal.includes('@') ? contactoVal : '';
-          const params = new URLSearchParams();
-          if (nameVal) params.set('name', nameVal);
-          if (calendlyEmail) params.set('email', calendlyEmail);
-          const calendlyUrl = 'https://calendly.com/vidia-info' + (params.toString() ? '?' + params.toString() : '');
           const firstName = nameVal ? nameVal.split(' ')[0] : '';
+
+          // Calendly wird später ergänzt – vorerst deaktiviert
+          // const contactoVal = (data.get('contacto') || '').toString().trim();
+          // const calendlyEmail = contactoVal.includes('@') ? contactoVal : '';
+          // const params = new URLSearchParams();
+          // if (nameVal) params.set('name', nameVal);
+          // if (calendlyEmail) params.set('email', calendlyEmail);
+          // const calendlyUrl = 'https://calendly.com/vidia-info' + (params.toString() ? '?' + params.toString() : '');
 
           // Replace whole form with a big success panel
           const wrap = form.parentElement;
@@ -1382,11 +1383,13 @@
           panel.innerHTML =
             '<div class="success-eyebrow">// RECIBIDO ✓</div>' +
             '<h3>¡Gracias' + (firstName ? ', ' + firstName : '') + '!</h3>' +
-            '<p class="success-sub"><strong>Te llamamos en menos de 24h</strong> para arrancar tu briefing.</p>' +
-            '<div class="success-divider"><span>¿prefieres elegir tú la hora?</span></div>' +
-            '<a href="' + calendlyUrl + '" target="_blank" rel="noopener noreferrer" class="success-cta">' +
-            'Reservar llamada (15 min) →</a>' +
-            '<p class="success-helper">Elige un hueco que te venga bien y arrancamos en ese mismo momento.</p>';
+            '<p class="success-sub"><strong>Te llamamos en menos de 24h</strong> para arrancar tu briefing.</p>';
+          // Calendly-CTA später wieder aktivieren:
+          // panel.innerHTML +=
+          //   '<div class="success-divider"><span>¿prefieres elegir tú la hora?</span></div>' +
+          //   '<a href="' + calendlyUrl + '" target="_blank" rel="noopener noreferrer" class="success-cta">' +
+          //   'Reservar llamada (15 min) →</a>' +
+          //   '<p class="success-helper">Elige un hueco que te venga bien y arrancamos en ese mismo momento.</p>';
           wrap.appendChild(panel);
           panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else if (msg.includes('activate') || msg.includes('confirm') || msg.includes('verify')) {
