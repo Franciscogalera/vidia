@@ -263,7 +263,7 @@
     color: rgba(14,14,14,0.55);
     margin-top: 3px;
   }
-  .upload .drop.has-file { border-style: solid; background: var(--pink); }
+  .upload .drop.has-file { border-style: solid; background: var(--lime); }
 
   button.submit {
     grid-column: 1 / -1;
@@ -390,8 +390,7 @@
     <div class="eyebrow">// CUÉNTANOS</div>
     <h1 class="page-title">Cuéntanos tu <em>proyecto</em>.</h1>
     <p class="page-sub">
-      Rellena este briefing y empezamos a producir tu vídeo. Cuanto más claro,
-      mejor — sin reuniones y sin perder tiempo.
+      Rellena este briefing y empezamos a producir tu vídeo. Cuanto más claro, mejor.
     </p>
   </div>
 </section>
@@ -435,7 +434,7 @@
     </div>
     <div class="field full">
       <label for="web">Web <span class="optional">(opcional)</span></label>
-      <input type="url" id="web" name="Web" placeholder="https://…">
+      <input type="text" id="web" name="Web" placeholder="testseite.de">
     </div>
 
     <!-- BLOQUE B -->
@@ -506,14 +505,23 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-  // Dateinamen im Drop-Feld anzeigen
+  // Dateinamen anzeigen; beim Mehrfach-Feld Auswahl über mehrere Klicks sammeln
   document.querySelectorAll('.upload input[type="file"]').forEach((input) => {
     const drop = input.parentElement.querySelector('.drop');
     const fname = drop.querySelector('.fname');
+    if (input.multiple) input._store = new DataTransfer();
     input.addEventListener('change', () => {
+      if (input.multiple) {
+        // neue Auswahl an bestehende anhängen, Duplikate (Name+Größe) überspringen
+        Array.from(input.files).forEach((f) => {
+          const exists = Array.from(input._store.files).some((x) => x.name === f.name && x.size === f.size);
+          if (!exists) input._store.items.add(f);
+        });
+        input.files = input._store.files;
+      }
       if (!input.files.length) { drop.classList.remove('has-file'); fname.textContent = ''; return; }
       const names = Array.from(input.files).map((f) => f.name);
-      fname.textContent = names.length > 1 ? names.length + ' archivos seleccionados' : names[0];
+      fname.textContent = names.length > 1 ? names.length + ' fotos seleccionadas' : names[0];
       drop.classList.add('has-file');
     });
   });
@@ -536,6 +544,12 @@
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // Der Upload läuft nur über die veröffentlichte Seite (Serverless-Funktion)
+    if (location.protocol === 'file:') {
+      setStatus('Este formulario solo funciona en la página publicada (vidia.online/cuentanos), no abriendo el archivo local.', 'error');
+      return;
+    }
 
     const fLogo = document.getElementById('f-logo');
     const fFotos = document.getElementById('f-fotos');
