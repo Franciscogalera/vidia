@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Términos y Condiciones · VIDIA</title>
+<meta name="description" content="Términos y condiciones generales (AGB) de VIDIA / Francisco Galera (Fuegomedia) — producción de vídeos publicitarios con IA." />
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="stylesheet" href="fonts.css">
+<style>
+  :root {
+    --bg: #FFF4E6;
+    --ink: #0E0E0E;
+    --hot: #FF4D2E;
+    --lime: #C6FF3D;
+    --violet: #5A3FFF;
+    --pink: #FFC2D1;
+    --paper: #FFEED1;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 20px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg);
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .logo { font-weight: 800; font-size: 22px; letter-spacing: -0.02em; text-decoration: none; color: var(--ink); }
+  .logo span { color: var(--hot); }
+  .back {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    border-radius: 100px;
+    padding: 8px 14px;
+    transition: all 0.2s ease;
+  }
+  .back:hover { background: var(--ink); color: var(--bg); }
+
+  main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+    position: relative;
+    z-index: 2;
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 6px 14px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+  h1 em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--violet);
+    font-weight: 400;
+  }
+  .lead { color: rgba(14,14,14,0.7); font-size: 18px; margin-bottom: 12px; }
+  .stand { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(14,14,14,0.55); margin-bottom: 48px; }
+
+  section.block {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 24px;
+    padding: 32px;
+    margin-bottom: 20px;
+  }
+  section.block h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 16px; }
+  section.block h3 { font-size: 15px; font-weight: 700; margin-top: 18px; margin-bottom: 6px; }
+  section.block p { font-size: 15px; margin-bottom: 12px; }
+  section.block p:last-child { margin-bottom: 0; }
+  section.block strong { font-weight: 700; }
+  section.block a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  section.block a:hover { color: var(--hot); }
+  section.block ul { padding-left: 22px; margin: 8px 0; }
+  section.block li { margin-bottom: 6px; font-size: 15px; }
+
+  footer {
+    border-top: 1.5px solid var(--ink);
+    padding: 32px;
+    text-align: center;
+    background: var(--ink);
+    color: var(--bg);
+    position: relative;
+    z-index: 2;
+  }
+  footer .footer-logo { font-weight: 800; font-size: 28px; letter-spacing: -0.02em; margin-bottom: 12px; }
+  footer .footer-logo span { color: var(--hot); }
+  footer .small { font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: 0.7; }
+  footer .links { margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+  footer .links a { color: var(--bg); text-decoration: none; margin: 0 8px; opacity: 0.8; }
+  footer .links a:hover { opacity: 1; text-decoration: underline; }
+
+  @media (max-width: 700px) {
+    main { padding: 56px 20px 80px; }
+    nav { padding: 14px 20px; }
+    section.block { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">VIDIA<span>.</span></a>
+  <a href="index.html" class="back">← Volver</a>
+</nav>
+
+<main>
+  <span class="eyebrow">// LEGAL</span>
+  <h1>Términos y <em>Condiciones</em></h1>
+  <p class="lead">Condiciones generales de contratación (AGB) para los servicios de VIDIA.</p>
+  <p class="stand">Última actualización: 19/07/2026</p>
+
+  <section class="block">
+    <h2>1. Proveedor y ámbito de aplicación</h2>
+    <p>Proveedor y responsable del servicio «VIDIA»:</p>
+    <p>
+      <strong>Francisco Galera</strong> (nombre comercial: Fuegomedia)<br>
+      Jugenheimer Str. 43, 60528 Frankfurt am Main, Alemania<br>
+      Email: <a href="mailto:info@fuegomedia.de">info@fuegomedia.de</a> · NIF-IVA: DE339874740
+    </p>
+    <p>Estas condiciones se aplican a todos los contratos sobre la producción de vídeos publicitarios generados con inteligencia artificial que se celebren a través de <a href="https://www.vidia.online">vidia.online</a>. La oferta se dirige principalmente a empresas y profesionales (autónomos). Si el cliente es consumidor, se aplican además las disposiciones legales imperativas de protección al consumidor y el <a href="desistimiento.html">derecho de desistimiento</a>.</p>
+  </section>
+
+  <section class="block">
+    <h2>2. Objeto del contrato</h2>
+    <p>VIDIA produce vídeos publicitarios (formato vertical 9:16 y, según el pack, 1:1 y 16:9) mediante avatar y voz generados con IA, guion y elementos de texto dinámicos, conforme al pack contratado (Validación, Impulso o Escala). El número de vídeos, formatos, revisiones y plazos son los descritos en la página de <a href="packs.html">packs</a> vigente en el momento de la contratación.</p>
+    <p>La producción se realiza de forma 100 % remota y asíncrona, sin reuniones presenciales.</p>
+  </section>
+
+  <section class="block">
+    <h2>3. Formación del contrato</h2>
+    <p>La presentación de los packs en el sitio web no constituye una oferta vinculante, sino una invitación a contratar. El contrato se perfecciona cuando el cliente selecciona un pack y completa el pago (total o el anticipo) a través del enlace de pago de Stripe, y VIDIA confirma la recepción. El cliente recibe un justificante de pago y, en su caso, una factura por email.</p>
+  </section>
+
+  <section class="block">
+    <h2>4. Colaboración del cliente</h2>
+    <p>Para poder producir el vídeo, el cliente facilita a través del formulario «Cuéntanos» la información y los materiales necesarios (idea, mensaje, guion o indicaciones, logo, fotos, en su caso vídeos y foto de referencia para el avatar).</p>
+    <p>El cliente garantiza que dispone de todos los derechos necesarios sobre los materiales aportados y que su uso no infringe derechos de terceros (derechos de autor, marcas, derechos de imagen). En particular, si aporta una foto de referencia de una persona (p. ej. un empleado) para el avatar, garantiza contar con su consentimiento expreso.</p>
+    <p>El cliente exime a VIDIA de reclamaciones de terceros derivadas de materiales o instrucciones aportados por el cliente.</p>
+  </section>
+
+  <section class="block">
+    <h2>5. Precios e impuestos</h2>
+    <p>Los precios indicados en la página de packs son <strong>netos (sin IVA)</strong>; junto a ellos se muestra también el precio con IVA incluido. Al pago se añade el IVA legal que corresponda, salvo en operaciones exentas (p. ej. inversión del sujeto pasivo para empresas de la UE con NIF-IVA válido).</p>
+  </section>
+
+  <section class="block">
+    <h2>6. Pago</h2>
+    <p>El pago se realiza a través de <strong>Stripe</strong>. El cliente puede elegir:</p>
+    <ul>
+      <li><strong>Pago completo</strong> del pack por adelantado, o</li>
+      <li><strong>Anticipo del 50 %</strong> al inicio y el <strong>50 % restante</strong> a la entrega.</li>
+    </ul>
+    <p>El importe restante se abona a través del enlace de pago correspondiente que VIDIA facilita al entregar la primera versión. VIDIA emite factura por cada pago.</p>
+  </section>
+
+  <section class="block">
+    <h2>7. Plazos de entrega</h2>
+    <p>Los plazos indicados (p. ej. primera entrega en 72 h o 48 h según el pack) se refieren a la <strong>primera versión</strong> y <strong>empiezan a contar una vez aprobado el guion</strong> por el cliente. Las rondas de revisión se realizan después y no se incluyen en dicho plazo. Los plazos se prorrogan de forma razonable si el cliente se retrasa en aportar materiales, información o aprobaciones necesarios.</p>
+  </section>
+
+  <section class="block">
+    <h2>8. Revisiones</h2>
+    <p>El número de rondas de revisión incluidas es el indicado en el pack contratado. Las revisiones se refieren a ajustes dentro del alcance acordado; los cambios sustanciales de concepto pueden constituir un encargo adicional sujeto a presupuesto.</p>
+  </section>
+
+  <section class="block">
+    <h2>9. Derechos de uso</h2>
+    <p>Una vez abonado íntegramente el precio, el cliente obtiene un <strong>derecho de uso</strong> del vídeo final para sus fines publicitarios y comerciales (p. ej. redes sociales, anuncios, web), sin límite temporal ni geográfico. La autoría y los derechos sobre los componentes de producción (avatar, plantillas, elementos técnicos) permanecen en VIDIA.</p>
+    <p>VIDIA podrá mostrar el trabajo realizado en su portfolio y con fines de referencia, salvo que el cliente lo indique por escrito.</p>
+  </section>
+
+  <section class="block">
+    <h2>10. Responsabilidad</h2>
+    <p>VIDIA responde de forma ilimitada por dolo y negligencia grave, así como por daños a la vida, el cuerpo o la salud. En caso de negligencia leve, VIDIA solo responde por el incumplimiento de obligaciones contractuales esenciales (obligaciones cuyo cumplimiento hace posible la ejecución del contrato y en las que el cliente confía habitualmente) y limitada al daño previsible y típico del contrato.</p>
+    <p>Queda excluida toda responsabilidad por lucro cesante o daños indirectos, salvo en los casos de responsabilidad ilimitada antes citados. No se ve afectada la responsabilidad imperativa (p. ej. Ley alemana de responsabilidad por productos).</p>
+  </section>
+
+  <section class="block">
+    <h2>11. Cancelación y desistimiento</h2>
+    <p>Antes de la aprobación del guion (inicio de la producción), el cliente puede cancelar el encargo; VIDIA podrá retener del anticipo la parte proporcional al trabajo ya realizado.</p>
+    <p>Si el cliente es <strong>consumidor</strong>, dispone de un derecho legal de desistimiento de 14 días conforme se detalla en la <a href="desistimiento.html">información sobre el derecho de desistimiento</a>. Al solicitar expresamente el inicio inmediato de la producción, el consumidor acepta que el derecho de desistimiento se extingue una vez ejecutado íntegramente el servicio.</p>
+  </section>
+
+  <section class="block">
+    <h2>12. Fuerza mayor</h2>
+    <p>VIDIA no responde por retrasos o imposibilidades debidos a causas fuera de su control razonable (p. ej. fallos de proveedores técnicos, interrupciones de red, caso fortuito). En tales casos los plazos se prorrogan por la duración del impedimento.</p>
+  </section>
+
+  <section class="block">
+    <h2>13. Derecho aplicable y jurisdicción</h2>
+    <p>Se aplica el Derecho de la República Federal de Alemania, con exclusión de la Convención de las Naciones Unidas sobre los Contratos de Compraventa Internacional de Mercaderías (CISG). Si el cliente es comerciante, persona jurídica de Derecho público o patrimonio especial de Derecho público, el fuero exclusivo es <strong>Frankfurt am Main</strong>. Frente a consumidores rigen los fueros legales y su elección de derecho no les priva de la protección imperativa de su país de residencia.</p>
+  </section>
+
+  <section class="block">
+    <h2>14. Cláusula de divisibilidad</h2>
+    <p>Si alguna disposición de estas condiciones fuera o deviniera total o parcialmente inválida, ello no afectará a la validez de las demás.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-logo">VIDIA<span>.</span></div>
+  <div class="small">© 2026 · Hecho con cariño</div>
+  <div class="links">
+    <a href="index.html">Inicio</a> ·
+    <a href="aviso-legal.html">Aviso Legal</a> ·
+    <a href="privacidad.html">Privacidad</a> ·
+    <a href="terminos.html">Términos</a> ·
+    <a href="desistimiento.html">Desistimiento</a>
+  </div>
+</footer>
+
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
